@@ -1,8 +1,10 @@
 package com.syntax.utils;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods extends BaseClass {
@@ -21,13 +23,24 @@ public class CommonMethods extends BaseClass {
 		WebElement elm = waiting(element);
 		elm.click();
 	}
-	
+
 	public static void clickLink(String linkText) {
 		driver.findElement(By.linkText(linkText)).click();
 	}
-	
+
 	public static void selectValue(WebElement element, String Value) {
-        Select obj = new Select(element);
-        obj.selectByVisibleText(Value);
-    }
+		Select obj = new Select(element);
+		obj.selectByVisibleText(Value);
+	}
+
+	public static void verificationDisplayed(WebElement element) {
+		boolean elm = element.isDisplayed();
+		Assert.assertTrue(elm);
+	}
+	
+	public static void verificationEquals(WebElement element, String expected) {
+		boolean elm = element.isDisplayed();
+		Assert.assertEquals(element, expected);
+	}
+
 }
